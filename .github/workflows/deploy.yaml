@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - ice-cream-dataops/ice-cream-dataops/**
+      - ice-cream-dataops/ice-cream-dataops/*
   workflow_dispatch:
  
 env:
