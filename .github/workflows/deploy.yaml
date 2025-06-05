@@ -1,4 +1,4 @@
-name: Deploy Toolkit
+name: Deploy Toolkit cdf
 on:
   push:
     branches:
