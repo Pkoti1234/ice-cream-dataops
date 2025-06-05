@@ -58,10 +58,110 @@ modules:
     warning_count: 0
     status: Success
     iteration: 1
+  - name: oee
+    location:
+      path: modules/bootcamp/use_cases/oee
+      hash: 432ffd79
+    build_variables:
+    - key: icapi_ds_external_id
+      value: ds_icapi
+      is_selected: true
+      location: modules/bootcamp
+    - key: icapi_space_name
+      value: icapi_dm_space
+      is_selected: true
+      location: modules/bootcamp
+    - key: tokenUri
+      value: ${IDP_TOKEN_URL}
+      is_selected: true
+      location: modules/bootcamp
+    - key: cdfProjectName
+      value: ${CDF_PROJECT}
+      is_selected: true
+      location: modules/bootcamp
+    - key: scopes
+      value: ${IDP_SCOPES}
+      is_selected: true
+      location: modules/bootcamp
+    - key: icapi_trigger_client_id
+      value: ${ICAPI_EXTRACTORS_CLIENT_ID}
+      is_selected: true
+      location: modules/bootcamp
+    - key: icapi_trigger_client_secret
+      value: ${ICAPI_EXTRACTORS_CLIENT_SECRET}
+      is_selected: true
+      location: modules/bootcamp
+    - key: icapi_extractors_client_id
+      value: ${ICAPI_EXTRACTORS_CLIENT_ID}
+      is_selected: true
+      location: modules/bootcamp
+    - key: icapi_extractors_client_secret
+      value: ${ICAPI_EXTRACTORS_CLIENT_SECRET}
+      is_selected: true
+      location: modules/bootcamp
+    - key: data_pipeline_oee_source_id
+      value: 994ddf6e-4afc-4b13-8fce-6200af57dde3
+      is_selected: true
+      location: modules/bootcamp/use_cases/oee
+    - key: uc_oee_ds_external_id
+      value: ds_uc_oee
+      is_selected: true
+      location: modules/bootcamp/use_cases/oee
+    - key: oee_space_name
+      value: oee_ts_space
+      is_selected: true
+      location: modules/bootcamp/use_cases/oee
+    - key: data_pipeline_oee_client_id
+      value: ${DATA_PIPELINE_OEE_CLIENT_ID}
+      is_selected: true
+      location: modules/bootcamp/use_cases/oee
+    - key: data_pipeline_oee_client_secret
+      value: ${DATA_PIPELINE_OEE_CLIENT_SECRET}
+      is_selected: true
+      location: modules/bootcamp/use_cases/oee
+    resources:
+      auth:
+      - identifier:
+          name: data_pipeline_oee
+        source:
+          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/use_cases/oee/auth/data_pipeline_oee.Group.yaml
+          hash: c3b48e03
+        kind: Group
+      data_models:
+      - identifier:
+          space: oee_ts_space
+        source:
+          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/use_cases/oee/data_models/oee_timeseries.space.yaml
+          hash: 4424ed7c
+        kind: Space
+      functions:
+      - identifier:
+          externalId: oee_timeseries
+        source:
+          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/use_cases/oee/functions/functions.Function.yaml
+          hash: b4795e39
+        kind: Function
+      - identifier:
+          functionExternalId: oee_timeseries
+          name: Run calculations every 5 minutes for last hour of data
+        source:
+          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/use_cases/oee/functions/schedules.Schedule.yaml
+          hash: 0cc26f4c
+        kind: Schedule
+      data_sets:
+      - identifier:
+          externalId: ds_uc_oee
+        source:
+          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/use_cases/oee/data_sets/data_sets.DataSet.yaml
+          hash: 0f794e6f
+        kind: DataSet
+    warning_count: 0
+    status: Success
+    iteration: 1
   - name: ice_cream_api
     location:
       path: modules/bootcamp/ice_cream_api
-      hash: 9a40ca67
+      hash: 8ef22867
     build_variables:
     - key: icapi_ds_external_id
       value: ds_icapi
@@ -104,6 +204,26 @@ modules:
       is_selected: true
       location: modules/bootcamp/ice_cream_api
     resources:
+      workflows:
+      - identifier:
+          externalId: wf_icapi_data_pipeline
+        source:
+          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/ice_cream_api/workflows/wf_icapi_data_pipeline.WorkFlow.yaml
+          hash: 83292a4b
+        kind: Workflow
+      - identifier:
+          externalId: icapi_trigger
+        source:
+          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/ice_cream_api/workflows/wf_icapi_data_pipeline.WorkFlowTrigger.yaml
+          hash: 4bb02ead
+        kind: WorkflowTrigger
+      - identifier:
+          workflowExternalId: wf_icapi_data_pipeline
+          version: '1'
+        source:
+          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/ice_cream_api/workflows/wf_icapi_data_pipeline.WorkflowVersion.yaml
+          hash: 0eb489e7
+        kind: WorkflowVersion
       extraction_pipelines:
       - identifier:
           externalId: ep_icapi_datapoints
@@ -235,106 +355,6 @@ modules:
             Cream Factory API/Source.yaml
           hash: ad7e9d3f
         kind: Source
-    warning_count: 2
-    status: Success
-    iteration: 1
-  - name: oee
-    location:
-      path: modules/bootcamp/use_cases/oee
-      hash: 432ffd79
-    build_variables:
-    - key: icapi_ds_external_id
-      value: ds_icapi
-      is_selected: true
-      location: modules/bootcamp
-    - key: icapi_space_name
-      value: icapi_dm_space
-      is_selected: true
-      location: modules/bootcamp
-    - key: tokenUri
-      value: ${IDP_TOKEN_URL}
-      is_selected: true
-      location: modules/bootcamp
-    - key: cdfProjectName
-      value: ${CDF_PROJECT}
-      is_selected: true
-      location: modules/bootcamp
-    - key: scopes
-      value: ${IDP_SCOPES}
-      is_selected: true
-      location: modules/bootcamp
-    - key: icapi_trigger_client_id
-      value: ${ICAPI_EXTRACTORS_CLIENT_ID}
-      is_selected: true
-      location: modules/bootcamp
-    - key: icapi_trigger_client_secret
-      value: ${ICAPI_EXTRACTORS_CLIENT_SECRET}
-      is_selected: true
-      location: modules/bootcamp
-    - key: icapi_extractors_client_id
-      value: ${ICAPI_EXTRACTORS_CLIENT_ID}
-      is_selected: true
-      location: modules/bootcamp
-    - key: icapi_extractors_client_secret
-      value: ${ICAPI_EXTRACTORS_CLIENT_SECRET}
-      is_selected: true
-      location: modules/bootcamp
-    - key: data_pipeline_oee_source_id
-      value: 994ddf6e-4afc-4b13-8fce-6200af57dde3
-      is_selected: true
-      location: modules/bootcamp/use_cases/oee
-    - key: uc_oee_ds_external_id
-      value: ds_uc_oee
-      is_selected: true
-      location: modules/bootcamp/use_cases/oee
-    - key: oee_space_name
-      value: oee_ts_space
-      is_selected: true
-      location: modules/bootcamp/use_cases/oee
-    - key: data_pipeline_oee_client_id
-      value: ${DATA_PIPELINE_OEE_CLIENT_ID}
-      is_selected: true
-      location: modules/bootcamp/use_cases/oee
-    - key: data_pipeline_oee_client_secret
-      value: ${DATA_PIPELINE_OEE_CLIENT_SECRET}
-      is_selected: true
-      location: modules/bootcamp/use_cases/oee
-    resources:
-      auth:
-      - identifier:
-          name: data_pipeline_oee
-        source:
-          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/use_cases/oee/auth/data_pipeline_oee.Group.yaml
-          hash: c3b48e03
-        kind: Group
-      data_models:
-      - identifier:
-          space: oee_ts_space
-        source:
-          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/use_cases/oee/data_models/oee_timeseries.space.yaml
-          hash: 4424ed7c
-        kind: Space
-      functions:
-      - identifier:
-          externalId: oee_timeseries
-        source:
-          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/use_cases/oee/functions/functions.Function.yaml
-          hash: b4795e39
-        kind: Function
-      - identifier:
-          functionExternalId: oee_timeseries
-          name: Run calculations every 5 minutes for last hour of data
-        source:
-          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/use_cases/oee/functions/schedules.Schedule.yaml
-          hash: 0cc26f4c
-        kind: Schedule
-      data_sets:
-      - identifier:
-          externalId: ds_uc_oee
-        source:
-          path: /home/user/workspace2/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/use_cases/oee/data_sets/data_sets.DataSet.yaml
-          hash: 0f794e6f
-        kind: DataSet
-    warning_count: 0
+    warning_count: 4
     status: Success
     iteration: 1
