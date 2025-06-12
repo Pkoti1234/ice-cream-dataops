@@ -10,7 +10,7 @@ environment:
 variables:
   modules:
     bootcamp:
-      #Variables shared again
+      #Variables shared again in prod
       icapi_ds_external_id: ds_icapi
       icapi_space_name: icapi_dm_space
       
