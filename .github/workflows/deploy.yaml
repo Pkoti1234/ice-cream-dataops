@@ -9,7 +9,7 @@ on:
 
 env:
   PYTHON_VERSION: '3.11'
-  # Change the TOOLKIT_VERSION depending on which version you are using in your work
+  # Change the TOOLKIT_VERSION depending on which version you are using in your work in prod
   TOOLKIT_VERSION: '0.5.30'
 jobs:
   build-modules:
