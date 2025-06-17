@@ -1,15 +1,16 @@
-[tool.poetry]
+[project]
 name = "ice-cream-dataops"
 version = "0.1.0"
 description = ""
-authors = ["Pallavi"]
+authors = [
+    {name = "Pallavi",email = "pallavi.koti@rockwellautomation.com"}
+]
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-cognite-toolkit = "0.5.30"
-
-
+requires-python = ">=3.11"
+dependencies = [
+]
+ 
+ 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
